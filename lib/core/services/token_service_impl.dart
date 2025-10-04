@@ -19,8 +19,7 @@ class TokenServiceImpl implements TokenService {
     final tokenJson = await _storage.read(key: 'access_token');
     if (tokenJson != null && tokenJson.isNotEmpty) {
       try {
-        final tokenData = jsonDecode(tokenJson) as Map<String, dynamic>;
-        return tokenData['token'] as String?;
+        return tokenJson;
       } catch (e) {
         await clearToken();
         return null;
